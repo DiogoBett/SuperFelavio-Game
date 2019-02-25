@@ -17,5 +17,21 @@ public class Player {
 
     }
 
+    public int getHealth() {
+        return health;
+    }
+
+    public boolean isJump() {
+        return jump;
+    }
+
+    public Direction getCurrentDirection() {
+        return currentDirection;
+    }
+
+    public void takeDamage() {
+
+    }
+
     //Power Ups are NOT MVP
 }

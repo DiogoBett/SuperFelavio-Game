@@ -7,4 +7,11 @@ public class Cats {
     public void move() {
 
     }
+    public void takeDamage(){
+
+    }
+
+    public int getHealth() {
+        return health;
+    }
 }
