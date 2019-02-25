@@ -1,6 +1,7 @@
 package org.academiadecodigo.tropadelete.superfelavio;
 
-import org.academiadecodigo.tropadelete.superfelavio.Cats;
+import org.academiadecodigo.tropadelete.superfelavio.gameObjects.Cats.Cats;
+import org.academiadecodigo.tropadelete.superfelavio.gameObjects.Player;
 
 public class CollisionDetector {
 
