@@ -1,3 +1,5 @@
+package org.academiadecodigo.tropadelete.superfelavio;
+
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 

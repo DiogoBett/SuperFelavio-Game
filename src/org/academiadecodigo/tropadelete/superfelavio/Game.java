@@ -1,3 +1,8 @@
+package org.academiadecodigo.tropadelete.superfelavio;
+
+import org.academiadecodigo.tropadelete.superfelavio.Cats;
+import org.academiadecodigo.tropadelete.superfelavio.Player;
+
 public class Game {
 
     private Player flavio;

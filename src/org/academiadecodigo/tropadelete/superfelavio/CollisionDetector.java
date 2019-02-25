@@ -1,3 +1,7 @@
+package org.academiadecodigo.tropadelete.superfelavio;
+
+import org.academiadecodigo.tropadelete.superfelavio.Cats;
+
 public class CollisionDetector {
 
     private Player flavio;

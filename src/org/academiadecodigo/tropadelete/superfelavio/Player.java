@@ -1,3 +1,7 @@
+package org.academiadecodigo.tropadelete.superfelavio;
+
+import org.academiadecodigo.tropadelete.superfelavio.Direction;
+
 public class Player {
 
     private int health;
