@@ -8,10 +8,12 @@ public class CollisionDetector {
 
     private Player felavio;
     private Cats[] cats;
+    private Rectangle player;
 
     public CollisionDetector(Player felavio, Cats[] cats) {
         this.felavio = felavio;
         this.cats = cats;
+        player = felavio.getobjectHitbox();
     }
 
     public void collisionDetect() {
