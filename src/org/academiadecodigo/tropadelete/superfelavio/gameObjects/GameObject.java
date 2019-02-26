@@ -6,7 +6,6 @@ public abstract class GameObject {
     protected int health;
     protected Direction currentDirection;
 
-
     public GameObject(int health){
         this.health = health;
         this.currentDirection = null;
@@ -26,5 +25,9 @@ public abstract class GameObject {
 
     public Direction getCurrentDirection() {
         return currentDirection;
+    }
+
+    public void setCurrentDirection(Direction currentDirection) {
+        this.currentDirection = currentDirection;
     }
 }
