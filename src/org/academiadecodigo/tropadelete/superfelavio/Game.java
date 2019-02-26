@@ -17,5 +17,20 @@ public class Game {
 
     public void start() {
 
+        Rectangle canvas = new Rectangle(10, 10, 400, 1000);
+        canvas.draw();
+
+        while (true) {
+
+            felavio.move();
+
+            for (int i = 0; i < cats.length; i++) {
+
+                cats[i].move();
+
+            }
+        }
+
+
     }
 }
