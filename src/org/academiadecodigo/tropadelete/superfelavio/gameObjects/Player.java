@@ -1,7 +1,5 @@
 package org.academiadecodigo.tropadelete.superfelavio.gameObjects;
 
-import org.academiadecodigo.tropadelete.superfelavio.Direction;
-
 public class Player extends GameObject {
     private static final int HEALTH = 7;
 
@@ -12,9 +10,6 @@ public class Player extends GameObject {
         super(HEALTH);
         this.jump = false;
     }
-
-
-
 
     public void jump() {
 
