@@ -1,5 +1,6 @@
 package org.academiadecodigo.tropadelete.superfelavio.gameObjects;
 
+import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.tropadelete.superfelavio.Direction;
 
 import java.awt.*;
@@ -7,7 +8,7 @@ import java.awt.*;
 public abstract class GameObject {
     protected int health;
     protected Direction currentDirection;
-    protected Rectangle visualObject;
+    protected Rectangle objectHitbox;
 
     public GameObject(int health){
         this.health = health;
@@ -16,15 +17,15 @@ public abstract class GameObject {
 
     public void move() {
         if (currentDirection == Direction.RIGHT) {
-            visualObject.translate(10,0);
+            objectHitbox.translate(10,0);
         }
 
         if (currentDirection == Direction.LEFT) {
-            visualObject.translate(-10,0);
+            objectHitbox.translate(-10,0);
         }
 
         if (currentDirection == null) {
-            visualObject.translate(0,0);
+            objectHitbox.translate(0,0);
         }
     }
 
@@ -42,5 +43,9 @@ public abstract class GameObject {
 
     public void setCurrentDirection(Direction currentDirection) {
         this.currentDirection = currentDirection;
+    }
+
+    public Rectangle getobjectHitbox() {
+        return objectHitbox;
     }
 }
