@@ -9,7 +9,7 @@ public enum Direction {
     RIGHT,
     LEFT;
 
-    public static Direction keysToDirection (KeyboardEvent key) {
+    public static Direction keysToDirection(KeyboardEvent key) {
 
         switch (key.getKey()) {
             case KeyboardEvent.KEY_SPACE:
@@ -24,7 +24,7 @@ public enum Direction {
 
     }
 
-    public static Direction oppositeDirection (Direction currentDirection){
+    public static Direction oppositeDirection(Direction currentDirection) {
 
         Direction opposite = null;
 

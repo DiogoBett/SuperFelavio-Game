@@ -7,7 +7,6 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.tropadelete.superfelavio.gameObjects.Player;
 
 
-
 public class KeyboardListener implements KeyboardHandler {
     private static final int[] controls = {
             KeyboardEvent.KEY_RIGHT,
@@ -17,18 +16,18 @@ public class KeyboardListener implements KeyboardHandler {
     private Player felavio;
 
 
-    public KeyboardListener (Player movable){
+    public KeyboardListener(Player movable) {
         felavio = movable;
 
         Keyboard keyboard = new Keyboard(this);
-        for (int i = 0 ; i < controls.length ; i++){
-            subscribe(controls[i],keyboard,KeyboardEventType.KEY_PRESSED);
-            subscribe(controls[i],keyboard,KeyboardEventType.KEY_RELEASED);
+        for (int i = 0; i < controls.length; i++) {
+            subscribe(controls[i], keyboard, KeyboardEventType.KEY_PRESSED);
+            subscribe(controls[i], keyboard, KeyboardEventType.KEY_RELEASED);
 
         }
     }
 
-    private void subscribe (int key , Keyboard keyboard,KeyboardEventType typeEvent){
+    private void subscribe(int key, Keyboard keyboard, KeyboardEventType typeEvent) {
         KeyboardEvent event = new KeyboardEvent();
         event.setKey(key);
         event.setKeyboardEventType(typeEvent);
@@ -36,11 +35,9 @@ public class KeyboardListener implements KeyboardHandler {
     }
 
 
-
-
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
-     felavio.setCurrentDirection(Direction.keysToDirection(keyboardEvent));
+        felavio.setCurrentDirection(Direction.keysToDirection(keyboardEvent));
 
     }
 

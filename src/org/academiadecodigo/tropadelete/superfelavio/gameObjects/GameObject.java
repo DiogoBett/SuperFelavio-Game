@@ -9,27 +9,30 @@ public abstract class GameObject {
     protected int health;
     protected Direction currentDirection;
     protected Rectangle objectHitbox;
+    private int speed;
 
-    public GameObject(int health){
+    public GameObject(int health, int speed, Rectangle objectHitbox) {
         this.health = health;
         this.currentDirection = null;
+        this.speed = speed;
+        this.objectHitbox = objectHitbox;
     }
 
     public void move() {
         if (currentDirection == Direction.RIGHT) {
-            objectHitbox.translate(10,0);
+            objectHitbox.translate(speed, 0);
         }
 
         if (currentDirection == Direction.LEFT) {
-            objectHitbox.translate(-10,0);
+            objectHitbox.translate(-speed, 0);
         }
 
-        if (currentDirection == null) {
+        /*if (currentDirection == null) {
             objectHitbox.translate(0,0);
-        }
+        }*/
     }
 
-    public void takeDamage (){
+    public void takeDamage() {
         health--;
     }
 
@@ -47,5 +50,9 @@ public abstract class GameObject {
 
     public Rectangle getobjectHitbox() {
         return objectHitbox;
+    }
+
+    public void objectDraw() {
+        objectHitbox.draw();
     }
 }
