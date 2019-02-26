@@ -55,4 +55,9 @@ public abstract class GameObject {
     public void objectDraw() {
         objectHitbox.draw();
     }
+
+    public void spawn(int PositionX, int PositionY) {
+        objectHitbox.translate(PositionX, PositionY - objectHitbox.getY() - 10);
+        objectHitbox.draw();
+    }
 }

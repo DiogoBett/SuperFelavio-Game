@@ -17,8 +17,9 @@ public class Cats extends GameObject {
     public void move() {
 
 
-        setCurrentDirection(Direction.RIGHT);
+        //setCurrentDirection(Direction.RIGHT);
 
         super.move();
     }
 }
+

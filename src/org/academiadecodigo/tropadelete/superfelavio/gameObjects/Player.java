@@ -14,7 +14,7 @@ public class Player extends GameObject {
 
 
     public Player() {
-        super(HEALTH, SPEED, new Rectangle(10, 100, WIDTH, HEIGHT));
+        super(HEALTH, SPEED, new Rectangle(10, 750 - HEIGHT, WIDTH, HEIGHT));
         this.jump = false;
     }
 

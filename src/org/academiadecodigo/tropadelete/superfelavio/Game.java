@@ -26,7 +26,7 @@ public class Game {
         felavio.objectDraw();
         new KeyboardListener(felavio);
         for (int i = 0 ; i < cats.length ; i++){
-            //spawn
+            // Spawn
             cats[i].objectDraw();
         }
         run();
