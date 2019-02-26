@@ -3,6 +3,7 @@ package org.academiadecodigo.tropadelete.superfelavio;
 import org.academiadecodigo.simplegraphics.graphics.Line;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.tropadelete.superfelavio.gameObjects.Cats.Cats;
 import org.academiadecodigo.tropadelete.superfelavio.gameObjects.Player;
 
@@ -11,6 +12,7 @@ public class Game {
     private Player felavio;
     private Cats[] cats;
     private Rectangle canvas;
+    private Picture background;
 
     public Game(Player felavio, Cats[] cats) {
         this.felavio = felavio;
@@ -21,7 +23,9 @@ public class Game {
 
         this.canvas = new Rectangle(10, 10, 1500, 800);
         canvas.draw();
-        Line ground = new Line(10,750,1510,750);
+        this.background = new Picture(10,10, "resources/Ground.png");
+        background.draw();
+        Line ground = new Line(10,746,1510,746);
         ground.draw();
         felavio.objectDraw();
         new KeyboardListener(felavio);
