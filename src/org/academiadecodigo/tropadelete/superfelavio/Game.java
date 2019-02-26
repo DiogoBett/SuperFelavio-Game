@@ -1,5 +1,6 @@
 package org.academiadecodigo.tropadelete.superfelavio;
 
+import org.academiadecodigo.simplegraphics.graphics.Line;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.tropadelete.superfelavio.gameObjects.Cats.Cats;
@@ -18,13 +19,20 @@ public class Game {
 
     public void start() {
 
-        Rectangle canvas = new Rectangle(10, 10, 1500, 800);
+        this.canvas = new Rectangle(10, 10, 1500, 800);
         canvas.draw();
+        Line ground = new Line(10,750,1510,750);
+        ground.draw();
         felavio.objectDraw();
         new KeyboardListener(felavio);
         for (int i = 0 ; i < cats.length ; i++){
+            //spawn
             cats[i].objectDraw();
         }
+        run();
+    }
+
+    private void run(){
         while (true) {
             try {
 
@@ -41,7 +49,5 @@ public class Game {
 
             }
         }
-
-
     }
 }
