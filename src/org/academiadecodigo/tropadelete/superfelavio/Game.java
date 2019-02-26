@@ -6,12 +6,12 @@ import org.academiadecodigo.tropadelete.superfelavio.gameObjects.Player;
 
 public class Game {
 
-    private Player flavio;
+    private Player felavio;
     private Cats[] cats;
     private Rectangle canvas;
 
-    public Game(Player flavio, Cats[] cats) {
-        this.flavio = flavio;
+    public Game(Player felavio, Cats[] cats) {
+        this.felavio = felavio;
         this.cats = cats;
     }
 

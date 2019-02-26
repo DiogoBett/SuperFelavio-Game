@@ -14,10 +14,11 @@ public class KeyboardListener implements KeyboardHandler {
             KeyboardEvent.KEY_LEFT,
             KeyboardEvent.KEY_SPACE
     };
-    private Player felaveo;
+    private Player felavio;
+
 
     public KeyboardListener (Player movable){
-        felaveo = movable;
+        felavio = movable;
 
         Keyboard keyboard = new Keyboard(this);
         for (int i = 0 ; i < controls.length ; i++){
@@ -39,13 +40,13 @@ public class KeyboardListener implements KeyboardHandler {
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
-     felaveo.setCurrentDirection(Direction.keysToDirection(keyboardEvent));
+     felavio.setCurrentDirection(Direction.keysToDirection(keyboardEvent));
 
     }
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
-        felaveo.setCurrentDirection(null);
+        felavio.setCurrentDirection(null);
 
     }
 }

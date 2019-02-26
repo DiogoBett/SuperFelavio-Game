@@ -5,11 +5,11 @@ import org.academiadecodigo.tropadelete.superfelavio.gameObjects.Player;
 
 public class CollisionDetector {
 
-    private Player flavio;
+    private Player felavio;
     private Cats[] cats;
 
-    public CollisionDetector(Player flavio, Cats[] cats) {
-        this.flavio = flavio;
+    public CollisionDetector(Player felavio, Cats[] cats) {
+        this.felavio = felavio;
         this.cats = cats;
     }
 
