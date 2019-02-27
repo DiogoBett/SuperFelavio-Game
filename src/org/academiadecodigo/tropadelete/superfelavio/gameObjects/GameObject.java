@@ -60,4 +60,38 @@ public abstract class GameObject {
         objectHitbox.translate(PositionX, PositionY - objectHitbox.getY() - 10);
         objectHitbox.draw();
     }
+
+    public int getX() {
+        return objectHitbox.getX();
+    }
+
+    public int getWidth() {
+        return getX() + objectHitbox.getWidth();
+    }
+
+    public int getY() {
+        return objectHitbox.getY();
+    }
+
+    public int getHeight() {
+        return getY() + objectHitbox.getHeight();
+    }
+
+    public boolean checkY(GameObject other) {
+
+        //compares whether the top of the other object's hitbox is within this object's hitbox height
+        boolean topY = getY() <= other.getY() && other.getY() <= getHeight();
+
+        //compares whether the bottom of the other object's hitbox is within this object's hitbox height
+        boolean bottomY = getY() <= other.getHeight() && other.getHeight() <= getHeight(); //
+
+        return (topY || bottomY);
+    }
+
+    public boolean checkX(GameObject other) {
+
+        boolean rightX = other.getX() <= getWidth() && other.getX() >= getX();
+        boolean leftX = other.getWidth() >= getX() && other.getWidth() <= getX();
+        return (rightX || leftX);
+    }
 }
