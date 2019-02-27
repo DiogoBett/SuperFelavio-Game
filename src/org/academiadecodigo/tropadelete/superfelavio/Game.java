@@ -30,7 +30,7 @@ public class Game {
         felavio.objectDraw();
         new KeyboardListener(felavio);
         for (int i = 0 ; i < cats.length ; i++){
-            int random = (int) (Math.random() * (1400 + 400));
+            int random = (int) (Math.random() * (1200 + 400));
             cats[i].spawn(random, 746);
             cats[i].objectDraw();
         }
