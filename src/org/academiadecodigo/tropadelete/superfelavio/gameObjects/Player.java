@@ -1,6 +1,7 @@
 package org.academiadecodigo.tropadelete.superfelavio.gameObjects;
 
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.tropadelete.superfelavio.Direction;
 
 public class Player extends GameObject {
     private static final int WIDTH = 20;
@@ -14,12 +15,22 @@ public class Player extends GameObject {
 
 
     public Player() {
-        super(HEALTH, SPEED, new Rectangle(10, 746 - HEIGHT, WIDTH, HEIGHT));
+        super(HEALTH, SPEED,new Rectangle(10, 40, WIDTH, HEIGHT));
         this.jump = false;
+
     }
 
-    public void jump() {
-
+    @Override
+    public void moveY() {
+        if(!jump && currentY == Direction.UP){
+            jump = true;
+            jumpHeight = hitbox.getY() - 60;
+        }
+        if(jumpHeight >= hitbox.getY()){
+            jump=false;
+            currentY = Direction.DOWN;
+        }
+        super.moveY();
     }
 
     public boolean isJump() {

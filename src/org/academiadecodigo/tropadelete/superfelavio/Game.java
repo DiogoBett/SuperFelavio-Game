@@ -2,57 +2,66 @@ package org.academiadecodigo.tropadelete.superfelavio;
 
 import org.academiadecodigo.simplegraphics.graphics.Line;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
-import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.tropadelete.superfelavio.gameObjects.Cats.Cats;
 import org.academiadecodigo.tropadelete.superfelavio.gameObjects.Player;
 
 public class Game {
+    public final int PADDING = 10;
+    public final int PLAYER_SPAWNZONE = 400;
+    public final int groundHeight = 30;
 
     private Player felavio;
     private Cats[] cats;
     private Rectangle canvas;
     private Picture background;
+    private CollisionDetector detector;
 
-    public Game(Player felavio, Cats[] cats) {
-        this.felavio = felavio;
+    public Game(Player felavio,Cats[] cats) {
         this.cats = cats;
+        this.felavio = felavio;
+        detector = new CollisionDetector(felavio, cats);
     }
 
     public void start() {
 
-        this.canvas = new Rectangle(10, 10, 1500, 800);
-        canvas.draw();
-        this.background = new Picture(10,10, "resources/Ground.png");
+
+        this.background = new Picture(PADDING, PADDING, "resources/Ground.png");
         background.draw();
-        Line ground = new Line(10,746,1510,746);
-        ground.draw();
-        felavio.objectDraw();
+        Line ground = new Line(PADDING, background.getHeight() - groundHeight, background.getWidth(), background.getHeight() - groundHeight);
+
+
+        felavio.spawn(30, ground.getY());
+        felavio.show();
         new KeyboardListener(felavio);
-        for (int i = 0 ; i < cats.length ; i++){
-            int random = (int) (Math.random() * (1200 + 400));
-            cats[i].spawn(random, 746);
-            cats[i].objectDraw();
+
+        for (int i = 0; i < cats.length; i++) {
+
+            int random = (int) (Math.random() * (background.getWidth() - PLAYER_SPAWNZONE) + PLAYER_SPAWNZONE);
+            cats[i].spawn(random, ground.getY());
+            cats[i].show();
         }
         run();
     }
 
-    private void run(){
-        while (true) {
+    private void run() {
+        while (true) {//felavio.isDead()
             try {
 
-                felavio.move();
+                felavio.moveX();
+                felavio.moveY();
                 Thread.sleep(50);
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("sleep failed");
             }
 
 
             for (int i = 0; i < cats.length; i++) {
 
-                cats[i].move();
+                cats[i].moveX();
 
             }
+            detector.collisionDetect();
         }
     }
 }

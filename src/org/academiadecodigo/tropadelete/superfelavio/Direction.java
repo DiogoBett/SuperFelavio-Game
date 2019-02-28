@@ -5,7 +5,7 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 public enum Direction {
 
     UP,
-    //DOWN,
+    DOWN,
     RIGHT,
     LEFT;
 

@@ -37,13 +37,16 @@ public class KeyboardListener implements KeyboardHandler {
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
-        felavio.setCurrentDirection(Direction.keysToDirection(keyboardEvent));
-
+        if (keyboardEvent.getKey() == KeyboardEvent.KEY_SPACE) {
+           felavio.setCurrentY(Direction.UP);
+            return;
+        }
+        felavio.setCurrentX(Direction.keysToDirection(keyboardEvent));
     }
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
-        felavio.setCurrentDirection(null);
+        felavio.setCurrentX(null);
 
     }
 }
