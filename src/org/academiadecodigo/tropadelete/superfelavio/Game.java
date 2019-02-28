@@ -11,6 +11,8 @@ public class Game {
     public final int PLAYER_SPAWNZONE = 400;
     public final int groundHeight = 30;
 
+    public static int GROUND_Y;
+
     private Player felavio;
     private Cats[] cats;
     private Rectangle canvas;
@@ -29,16 +31,16 @@ public class Game {
         this.background = new Picture(PADDING, PADDING, "resources/Ground.png");
         background.draw();
         Line ground = new Line(PADDING, background.getHeight() - groundHeight, background.getWidth(), background.getHeight() - groundHeight);
+        GROUND_Y = ground.getY() - groundHeight;
 
-
-        felavio.spawn(30, ground.getY());
+        felavio.spawn(30, ground.getY() - groundHeight);
         felavio.show();
         new KeyboardListener(felavio);
 
         for (int i = 0; i < cats.length; i++) {
 
             int random = (int) (Math.random() * (background.getWidth() - PLAYER_SPAWNZONE) + PLAYER_SPAWNZONE);
-            cats[i].spawn(random, ground.getY());
+            cats[i].spawn(random, ground.getY() -  groundHeight);
             cats[i].show();
         }
         run();

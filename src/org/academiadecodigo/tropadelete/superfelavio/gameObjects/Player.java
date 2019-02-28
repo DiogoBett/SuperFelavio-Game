@@ -28,7 +28,7 @@ public class Player extends GameObject {
         }
         if(jumpHeight >= hitbox.getY()){
             jump=false;
-            currentY = Direction.DOWN;
+            currentY = Direction.RIGHT;
         }
         super.moveY();
     }

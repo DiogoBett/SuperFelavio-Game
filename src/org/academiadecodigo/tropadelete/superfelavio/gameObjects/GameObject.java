@@ -4,6 +4,7 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.graphics.Shape;
 import org.academiadecodigo.tropadelete.superfelavio.CollisionDetector;
 import org.academiadecodigo.tropadelete.superfelavio.Direction;
+import org.academiadecodigo.tropadelete.superfelavio.Game;
 
 public abstract class GameObject {
     private int health;
@@ -42,8 +43,11 @@ public abstract class GameObject {
         if (currentY == Direction.UP && hitbox.getY() >= jumpHeight) {
             hitbox.translate(0, -speed);
             return;
+        } else {
+            currentY = Direction.DOWN;
         }
-        if(currentY == Direction.DOWN){
+
+        if(currentY == Direction.DOWN && hitbox.getY() + hitbox.getHeight() <= Game.GROUND_Y){
             hitbox.translate(0,speed);
         }
 
