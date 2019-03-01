@@ -23,7 +23,7 @@ public class CollisionDetector {
             if(felavio.checkX(cat) && felavio.checkY(cat)){
                 if (felavio.isJump()){
                     cat.takeDamage();
-                    return;
+                    continue;
                 }
 
                 felavio.takeDamage();

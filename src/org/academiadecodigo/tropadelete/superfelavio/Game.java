@@ -63,8 +63,9 @@ public class Game {
 
 
             for (int i = 0; i < cats.length; i++) {
-
+                if(!cats[i].isDead()){
                 cats[i].moveX();
+                }
 
             }
             detector.collisionDetect();

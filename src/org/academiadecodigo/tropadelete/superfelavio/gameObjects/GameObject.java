@@ -96,7 +96,7 @@ public abstract class GameObject {
     }
 
     public boolean isDead() {
-        return health >= 0;
+        return health <= 0;
     }
 
     public Rectangle getHitbox() {
