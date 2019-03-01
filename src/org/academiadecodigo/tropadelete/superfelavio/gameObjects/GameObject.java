@@ -13,7 +13,6 @@ public abstract class GameObject {
     protected Rectangle hitbox;
     private int speed;
     protected int jumpHeight;
-    private Shape[] wall;
 
 
     public GameObject(int health, int speed, Rectangle hitbox) {
@@ -26,11 +25,12 @@ public abstract class GameObject {
     }
 
     public void moveX() {
-        if (currentX == Direction.RIGHT) {
+
+        if (currentX == Direction.RIGHT && getWidth() <= Game.WALL_RIGHT) {
             hitbox.translate(speed, 0);
         }
 
-        if (currentX == Direction.LEFT) {
+        if (currentX == Direction.LEFT && getX() > Game.WALL_LEFT) {
             hitbox.translate(-speed, 0);
         }
 
@@ -43,14 +43,15 @@ public abstract class GameObject {
         if (currentY == Direction.UP && hitbox.getY() >= jumpHeight) {
             hitbox.translate(0, -speed);
             return;
-        } else {
+        } /*else {
             currentY = Direction.DOWN;
         }
-
-        if(currentY == Direction.DOWN && hitbox.getY() + hitbox.getHeight() <= Game.GROUND_Y){
+        if(currentY == Direction.DOWN && getHeight() <= Game.GROUND_Y){
+            hitbox.translate(0,speed);
+        }*/
+        if (getHeight() <= Game.GROUND_Y){
             hitbox.translate(0,speed);
         }
-
 
     }
 

@@ -12,6 +12,8 @@ public class Game {
     public final int groundHeight = 30;
 
     public static int GROUND_Y;
+    public static int WALL_RIGHT;
+    public static int WALL_LEFT;
 
     private Player felavio;
     private Cats[] cats;
@@ -32,6 +34,8 @@ public class Game {
         background.draw();
         Line ground = new Line(PADDING, background.getHeight() - groundHeight, background.getWidth(), background.getHeight() - groundHeight);
         GROUND_Y = ground.getY() - groundHeight;
+        WALL_LEFT = background.getX();
+        WALL_RIGHT = background.getWidth();
 
         felavio.spawn(30, ground.getY() - groundHeight);
         felavio.show();

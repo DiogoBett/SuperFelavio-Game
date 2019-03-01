@@ -37,7 +37,7 @@ public class KeyboardListener implements KeyboardHandler {
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
-        if (keyboardEvent.getKey() == KeyboardEvent.KEY_SPACE) {
+        if (keyboardEvent.getKey() == KeyboardEvent.KEY_SPACE && !felavio.isJump()) {
            felavio.setCurrentY(Direction.UP);
             return;
         }

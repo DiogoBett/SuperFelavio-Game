@@ -1,6 +1,8 @@
 package org.academiadecodigo.tropadelete.superfelavio.gameObjects.Cats;
 
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.tropadelete.superfelavio.Direction;
+import org.academiadecodigo.tropadelete.superfelavio.Game;
 import org.academiadecodigo.tropadelete.superfelavio.gameObjects.GameObject;
 
 public class Cats extends GameObject {
@@ -10,14 +12,17 @@ public class Cats extends GameObject {
 
     public Cats(int health) {
         super(health, SPEED,new Rectangle(10, 10, WIDTH, HEIGHT));
+        setCurrentX(Direction.LEFT);
     }
 
     @Override
     public void moveX() {
 
 
-        //setCurrentX(Direction.RIGHT);
 
+        if(super.getX() <= Game.WALL_LEFT || super.getWidth() >= Game.WALL_RIGHT){
+            super.setCurrentX(Direction.oppositeDirection(getCurrentX()));
+        }
         super.moveX();
     }
 
