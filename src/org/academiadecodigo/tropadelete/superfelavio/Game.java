@@ -27,6 +27,7 @@ public class Game {
     private CollisionDetector detector;
     private Text currentScore;
     private int score;
+    private Sound catDeath;
 
     public Game() {
         this.cats = new LinkedList<Cats>();
@@ -39,6 +40,8 @@ public class Game {
     public void start() {
 
 
+
+
         this.background = new Picture(PADDING, PADDING, "resources/ground.jpg");
         background.draw();
         Line ground = new Line(PADDING, background.getHeight() - groundHeight, background.getWidth(), background.getHeight() - groundHeight);
@@ -49,7 +52,7 @@ public class Game {
         detector = new CollisionDetector(felavio, cats);
         felavio.show();
         currentScore.draw();
-
+        catDeath = new Sound("/resources/catDeath.wav");
         new KeyboardListener(felavio);
 
         run();
@@ -77,7 +80,7 @@ public class Game {
                     it.remove();
                     score = score + 10;
                     updateScore();
-
+                    catDeath.play(true);
                     continue;
                 }
                 kitty.moveX();
