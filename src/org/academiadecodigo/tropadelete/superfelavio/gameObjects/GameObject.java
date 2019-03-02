@@ -91,6 +91,10 @@ public abstract class GameObject {
         return health <= 0;
     }
 
+    public int getHealth() {
+        return health;
+    }
+
     public Rectangle getHitbox() {
         return hitbox;
     }

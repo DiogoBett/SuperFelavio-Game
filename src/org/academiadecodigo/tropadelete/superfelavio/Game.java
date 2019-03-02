@@ -26,21 +26,19 @@ public class Game {
     private Picture background;
     private CollisionDetector detector;
     private Text currentScore;
+    private Text currentHealth;
     private int score;
     private Sound catDeath;
+    private Sound gameSound;
 
     public Game() {
         this.cats = new LinkedList<Cats>();
         this.felavio = felavio;
         score = 0;
         currentScore = new Text(10,10, "Score: " + score);
-
     }
 
     public void start() {
-
-
-
 
         this.background = new Picture(PADDING, PADDING, "resources/ground.jpg");
         background.draw();
@@ -49,10 +47,14 @@ public class Game {
         WALL_LEFT = background.getX();
         WALL_RIGHT = background.getWidth();
         this.felavio = new Player();
+        currentHealth = new Text(10, 30, "Health: " + felavio.getHealth());
         detector = new CollisionDetector(felavio, cats);
         felavio.show();
         currentScore.draw();
+        currentHealth.draw();
         catDeath = new Sound("/resources/catDeath.wav");
+        gameSound = new Sound ("/resources/SuperFelavioMusic.wav");
+        gameSound.setLoop(100);
         new KeyboardListener(felavio);
 
         run();
@@ -63,7 +65,7 @@ public class Game {
         while (true) {//!felavio.isDead()
             spawner();
             try {
-
+                updateHealth();
                 felavio.moveX();
                 felavio.moveY();
                 Thread.sleep(20);
@@ -106,6 +108,12 @@ public class Game {
         currentScore.delete();
         currentScore = new Text(10,10, "Score: " + score);
         currentScore.draw();
+    }
+
+    public void updateHealth() {
+        currentHealth.delete();
+        currentHealth = new Text(10,30, "Health: " + felavio.getHealth());
+        currentHealth.draw();
     }
 
 }
