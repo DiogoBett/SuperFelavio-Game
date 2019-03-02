@@ -7,11 +7,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-
-        /*Cats[] cats ={
-                new Cats(1),
-                new Cats(1)
-        };*/
         Game game = new Game();
         game.start();
     }

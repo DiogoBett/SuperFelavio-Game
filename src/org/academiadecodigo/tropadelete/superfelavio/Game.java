@@ -34,7 +34,7 @@ public class Game {
     public void start() {
 
 
-        this.background = new Picture(PADDING, PADDING, "resources/Ground.jpg");
+        this.background = new Picture(PADDING, PADDING, "resources/ground.jpg");
         background.draw();
         Line ground = new Line(PADDING, background.getHeight() - groundHeight, background.getWidth(), background.getHeight() - groundHeight);
         GROUND_Y = ground.getY() - groundHeight;
@@ -84,7 +84,7 @@ public class Game {
 
     private void spawner () {
         if(nextSpawnTime <= System.currentTimeMillis()){
-            Cats cat1 =CatFactory.spawnCats(1, WALL_RIGHT);
+            Cats cat1 =CatFactory.spawnCats(1, WALL_RIGHT - 50);
             Cats cat2 =CatFactory.spawnCats(1, WALL_LEFT);
             cats.add(cat1);
             cats.add(cat2);

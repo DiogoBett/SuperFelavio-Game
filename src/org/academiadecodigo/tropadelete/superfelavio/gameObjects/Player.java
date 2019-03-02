@@ -6,8 +6,8 @@ import org.academiadecodigo.tropadelete.superfelavio.Direction;
 import org.academiadecodigo.tropadelete.superfelavio.Game;
 
 public class Player extends GameObject {
-    private static final int WIDTH = 20;
-    private static final int HEIGHT = 40;
+    private static final int WIDTH = 30;
+    private static final int HEIGHT = 80;
     private static final int SPEED = 10;
 
 
@@ -17,7 +17,7 @@ public class Player extends GameObject {
 
 
     public Player() {
-        super(HEALTH, SPEED,new Rectangle(Game.WALL_RIGHT/2, Game.GROUND_Y-100, WIDTH, HEIGHT),new Picture(Game.WALL_RIGHT/2, Game.GROUND_Y-100, "resources/Cat Sprites.png"));
+        super(HEALTH, SPEED,new Rectangle(Game.WALL_RIGHT/2, Game.GROUND_Y-100, WIDTH, HEIGHT),new Picture((Game.WALL_RIGHT/2) -15 , Game.GROUND_Y - 130, "resources/flavio.png"));
         this.jump = false;
 
     }
