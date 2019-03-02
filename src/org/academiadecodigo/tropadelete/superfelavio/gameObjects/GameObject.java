@@ -26,7 +26,7 @@ public abstract class GameObject {
 
     public void moveX() {
 
-        if (currentX == Direction.RIGHT && getWidth() <= Game.WALL_RIGHT) {
+        if (currentX == Direction.RIGHT && getWidth() < Game.WALL_RIGHT) {
             hitbox.translate(speed, 0);
         }
 

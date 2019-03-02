@@ -8,7 +8,7 @@ import org.academiadecodigo.tropadelete.superfelavio.gameObjects.Player;
 
 public class Game {
     public final int PADDING = 10;
-    public final int PLAYER_SPAWNZONE = 400;
+
     public final int groundHeight = 30;
 
     public static int GROUND_Y;
@@ -17,12 +17,12 @@ public class Game {
 
     private Player felavio;
     private Cats[] cats;
-    private Rectangle canvas;
+
     private Picture background;
     private CollisionDetector detector;
 
-    public Game(Player felavio,Cats[] cats) {
-        this.cats = cats;
+    public Game(Player felavio, int catNumber) {
+        this.cats = new Cats[catNumber];
         this.felavio = felavio;
         detector = new CollisionDetector(felavio, cats);
     }
@@ -37,15 +37,27 @@ public class Game {
         WALL_LEFT = background.getX();
         WALL_RIGHT = background.getWidth();
 
-        felavio.spawn(30, ground.getY() - groundHeight);
+        felavio.spawn(WALL_RIGHT/2, GROUND_Y);
         felavio.show();
+
         new KeyboardListener(felavio);
 
         for (int i = 0; i < cats.length; i++) {
 
-            int random = (int) (Math.random() * (background.getWidth() - PLAYER_SPAWNZONE) + PLAYER_SPAWNZONE);
-            cats[i].spawn(random, ground.getY() -  groundHeight);
+            int random = (int) (Math.random() * 101);
+
+            int catStartPoint = WALL_RIGHT;
+
+            if (random < 50) {
+                catStartPoint = WALL_LEFT;
+            }
+
+            cats[i] = new Cats(1, catStartPoint);
             cats[i].show();
+
+            /*int random = (int) (Math.random() * (background.getWidth() - PLAYER_SPAWNZONE) + PLAYER_SPAWNZONE);
+            cats[i].spawn(random, ground.getY() -  groundHeight);
+            cats[i].show();*/
         }
         run();
     }

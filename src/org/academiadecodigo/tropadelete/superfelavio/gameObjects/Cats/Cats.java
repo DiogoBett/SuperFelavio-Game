@@ -10,8 +10,8 @@ public class Cats extends GameObject {
     private static final int HEIGHT = 10;
     private static final int SPEED = 5;
 
-    public Cats(int health) {
-        super(health, SPEED,new Rectangle(10, 10, WIDTH, HEIGHT));
+    public Cats(int health ,int startPoint) {
+        super(health, SPEED,new Rectangle(startPoint,Game.GROUND_Y,WIDTH,HEIGHT));
         setCurrentX(Direction.LEFT);
     }
 
@@ -19,12 +19,16 @@ public class Cats extends GameObject {
     public void moveX() {
 
 
-
-        if(super.getX() <= Game.WALL_LEFT || super.getWidth() >= Game.WALL_RIGHT){
+        if (super.getX() <= Game.WALL_LEFT || super.getWidth() >= Game.WALL_RIGHT) {
             super.setCurrentX(Direction.oppositeDirection(getCurrentX()));
         }
         super.moveX();
     }
 
+    //private Rectangle pickStartPosition() {
+
+    //}
 }
+
+
 
