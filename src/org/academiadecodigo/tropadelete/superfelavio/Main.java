@@ -7,12 +7,12 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Player felavio = new Player();
+
         /*Cats[] cats ={
                 new Cats(1),
                 new Cats(1)
         };*/
-        Game game = new Game(felavio,2);
+        Game game = new Game();
         game.start();
     }
 }

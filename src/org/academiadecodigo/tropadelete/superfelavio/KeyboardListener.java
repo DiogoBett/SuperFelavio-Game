@@ -46,7 +46,8 @@ public class KeyboardListener implements KeyboardHandler {
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
-        felavio.setCurrentX(null);
-
+        if(keyboardEvent.getKey() != KeyboardEvent.KEY_SPACE) {
+            felavio.setCurrentX(null);
+        }
     }
 }

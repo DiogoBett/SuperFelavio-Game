@@ -1,6 +1,7 @@
 package org.academiadecodigo.tropadelete.superfelavio.gameObjects;
 
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.tropadelete.superfelavio.Direction;
 import org.academiadecodigo.tropadelete.superfelavio.Game;
 
@@ -16,7 +17,7 @@ public class Player extends GameObject {
 
 
     public Player() {
-        super(HEALTH, SPEED,new Rectangle(10, 40, WIDTH, HEIGHT));
+        super(HEALTH, SPEED,new Rectangle(Game.WALL_RIGHT/2, Game.GROUND_Y-100, WIDTH, HEIGHT),new Picture(Game.WALL_RIGHT/2, Game.GROUND_Y-100, "resources/Cat Sprites.png"));
         this.jump = false;
 
     }
