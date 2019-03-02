@@ -1,6 +1,7 @@
 package org.academiadecodigo.tropadelete.superfelavio;
 
 import org.academiadecodigo.simplegraphics.graphics.Line;
+import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.tropadelete.superfelavio.gameObjects.Cats.CatFactory;
 import org.academiadecodigo.tropadelete.superfelavio.gameObjects.Cats.Cats;
@@ -24,10 +25,14 @@ public class Game {
     private long nextSpawnTime;
     private Picture background;
     private CollisionDetector detector;
+    private Text currentScore;
+    private int score;
 
     public Game() {
         this.cats = new LinkedList<Cats>();
         this.felavio = felavio;
+        score = 0;
+        currentScore = new Text(10,10, "Score: " + score);
 
     }
 
@@ -43,13 +48,9 @@ public class Game {
         this.felavio = new Player();
         detector = new CollisionDetector(felavio, cats);
         felavio.show();
+        currentScore.draw();
 
         new KeyboardListener(felavio);
-
-
-
-
-
 
         run();
     }
@@ -74,6 +75,9 @@ public class Game {
                 if(kitty.isDead()){
                     kitty.hide();
                     it.remove();
+                    score = score + 10;
+                    updateScore();
+
                     continue;
                 }
                 kitty.moveX();
@@ -95,6 +99,10 @@ public class Game {
 
     }
 
-
+    public void updateScore() {
+        currentScore.delete();
+        currentScore = new Text(10,10, "Score: " + score);
+        currentScore.draw();
+    }
 
 }
