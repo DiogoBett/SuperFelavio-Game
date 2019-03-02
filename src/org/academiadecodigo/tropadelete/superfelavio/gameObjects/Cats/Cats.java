@@ -12,7 +12,7 @@ public class Cats extends GameObject {
     private static final int SPEED = 5;
 
     public Cats(int health ,int startPoint) {
-        super(health, SPEED,new Rectangle(startPoint,Game.GROUND_Y,WIDTH,HEIGHT),new Picture(startPoint, Game.GROUND_Y - 40, "resources/cat.png"));
+        super(health, SPEED,new Rectangle(startPoint,Game.GROUND_Y,WIDTH,HEIGHT),new Picture(startPoint, Game.GROUND_Y - 40, "resources/cat.png"), new Picture(startPoint, Game.GROUND_Y - 40, "resources/catLeft.png"));
 
         setCurrentX(Direction.LEFT);
     }

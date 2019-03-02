@@ -23,6 +23,7 @@ public class Game {
     private Player felavio;
     private LinkedList<Cats> cats;
     private long nextSpawnTime;
+    private long immuneTimer;
     private Picture background;
     private CollisionDetector detector;
     private Text currentScore;
@@ -35,7 +36,6 @@ public class Game {
         this.cats = new LinkedList<Cats>();
         this.felavio = felavio;
         score = 0;
-        currentScore = new Text(10,10, "Score: " + score);
     }
 
     public void start() {
@@ -47,6 +47,7 @@ public class Game {
         WALL_LEFT = background.getX();
         WALL_RIGHT = background.getWidth();
         this.felavio = new Player();
+        currentScore = new Text(10,10, "Score: " + score);
         currentHealth = new Text(10, 30, "Health: " + felavio.getHealth());
         detector = new CollisionDetector(felavio, cats);
         felavio.show();

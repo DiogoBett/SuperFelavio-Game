@@ -1,9 +1,7 @@
 package org.academiadecodigo.tropadelete.superfelavio.gameObjects;
 
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
-import org.academiadecodigo.simplegraphics.graphics.Shape;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
-import org.academiadecodigo.tropadelete.superfelavio.CollisionDetector;
 import org.academiadecodigo.tropadelete.superfelavio.Direction;
 import org.academiadecodigo.tropadelete.superfelavio.Game;
 
@@ -12,19 +10,21 @@ public abstract class GameObject {
     private Direction currentX;
     protected Direction currentY;
     protected Rectangle hitbox;
-    private Picture leftPic;
     private Picture rightPic;
+    private Picture leftPic;
+    private Picture currentPic;
     private int speed;
     protected int jumpHeight;
 
 
-    public GameObject(int health, int speed, Rectangle hitbox, Picture leftPic) {
+    public GameObject(int health, int speed, Rectangle hitbox, Picture rightPic, Picture leftPic) {
         this.health = health;
         this.currentX = null;
         this.currentY = null;
         this.speed = speed;
         this.hitbox = hitbox;
         this.jumpHeight = 0;
+        this.rightPic = rightPic;
         this.leftPic = leftPic;
 
     }
@@ -33,11 +33,13 @@ public abstract class GameObject {
 
         if (currentX == Direction.RIGHT && getWidth() < Game.WALL_RIGHT) {
             hitbox.translate(speed, 0);
+            rightPic.translate(speed, 0);
             leftPic.translate(speed, 0);
         }
 
         if (currentX == Direction.LEFT && getX() > Game.WALL_LEFT) {
             hitbox.translate(-speed, 0);
+            rightPic.translate(-speed, 0);
             leftPic.translate(-speed, 0);
         }
 
@@ -46,13 +48,15 @@ public abstract class GameObject {
     public void moveY() {
         if (currentY == Direction.UP && hitbox.getY() >= jumpHeight) {
             hitbox.translate(0, -speed);
+            rightPic.translate(0, -speed);
             leftPic.translate(0, -speed);
             return;
         }
 
         if (getHeight() <= Game.GROUND_Y) {
             hitbox.translate(0, speed);
-            leftPic.translate(0, speed);
+            rightPic.translate(0, speed);
+            leftPic.translate(0,speed);
         }
 
     }
@@ -80,10 +84,12 @@ public abstract class GameObject {
     }
 
     public void show() {
-        leftPic.draw();
+        rightPic.draw();
+
     }
 
     public void hide() {
+        rightPic.delete();
         leftPic.delete();
     }
 

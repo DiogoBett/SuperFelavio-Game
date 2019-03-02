@@ -12,7 +12,6 @@ public class CollisionDetector {
 
     private Player felavio;
     private LinkedList<Cats> cats;
-   // private Shape ground;
 
     public CollisionDetector(Player felavio, LinkedList<Cats> cats) {
         this.felavio = felavio;
@@ -43,15 +42,4 @@ public class CollisionDetector {
 
     }
 
-
-
-
-    /*public boolean groundDetector (GameObject object){
-        Rectangle objectHitbox = object.getHitbox();
-        if(felavio.getHeight() > ground.getY()){
-           objectHitbox.translate(0,objectHitbox.getY()-ground.getY() );
-           return true;
-        }
-        return false;
-    }*/
 }

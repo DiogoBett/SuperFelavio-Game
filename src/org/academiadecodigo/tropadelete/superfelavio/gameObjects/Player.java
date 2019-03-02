@@ -11,15 +11,14 @@ public class Player extends GameObject {
     private static final int SPEED = 10;
 
 
-    private static final int HEALTH = 7;
+    private static final int HEALTH = 100;
 
     private boolean jump;
 
 
     public Player() {
-        super(HEALTH, SPEED,new Rectangle(Game.WALL_RIGHT/2, Game.GROUND_Y-100, WIDTH, HEIGHT),new Picture((Game.WALL_RIGHT/2) -15 , Game.GROUND_Y - 130, "resources/flavio.png"));
+        super(HEALTH, SPEED,new Rectangle(Game.WALL_RIGHT/2, Game.GROUND_Y-100, WIDTH, HEIGHT),new Picture((Game.WALL_RIGHT/2) -15 , Game.GROUND_Y - 130, "resources/flavio.png"), new Picture (Game.WALL_RIGHT/2 - 15, Game.GROUND_Y - 130, "resources/flavioLeft.png"));
         this.jump = false;
-
     }
 
     @Override
