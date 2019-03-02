@@ -6,13 +6,15 @@ import org.academiadecodigo.tropadelete.superfelavio.gameObjects.Cats.Cats;
 import org.academiadecodigo.tropadelete.superfelavio.gameObjects.GameObject;
 import org.academiadecodigo.tropadelete.superfelavio.gameObjects.Player;
 
+import java.util.LinkedList;
+
 public class CollisionDetector {
 
     private Player felavio;
-    private Cats[] cats;
-    private Shape ground;
+    private LinkedList<Cats> cats;
+   // private Shape ground;
 
-    public CollisionDetector(Player felavio, Cats[] cats) {
+    public CollisionDetector(Player felavio, LinkedList<Cats> cats) {
         this.felavio = felavio;
         this.cats = cats;
 
@@ -41,12 +43,15 @@ public class CollisionDetector {
 
     }
 
-    public boolean groundDetector (GameObject object){
+
+
+
+    /*public boolean groundDetector (GameObject object){
         Rectangle objectHitbox = object.getHitbox();
         if(felavio.getHeight() > ground.getY()){
            objectHitbox.translate(0,objectHitbox.getY()-ground.getY() );
            return true;
         }
         return false;
-    }
+    }*/
 }

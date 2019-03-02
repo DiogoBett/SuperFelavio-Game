@@ -3,10 +3,14 @@ package org.academiadecodigo.tropadelete.superfelavio;
 import org.academiadecodigo.simplegraphics.graphics.Line;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
+import org.academiadecodigo.tropadelete.superfelavio.gameObjects.Cats.CatFactory;
 import org.academiadecodigo.tropadelete.superfelavio.gameObjects.Cats.Cats;
 import org.academiadecodigo.tropadelete.superfelavio.gameObjects.Player;
 
+import java.util.LinkedList;
+
 public class Game {
+
     public final int PADDING = 10;
 
     public final int groundHeight = 30;
@@ -16,13 +20,13 @@ public class Game {
     public static int WALL_LEFT;
 
     private Player felavio;
-    private Cats[] cats;
+    private LinkedList<Cats> cats;
 
     private Picture background;
     private CollisionDetector detector;
 
     public Game(Player felavio, int catNumber) {
-        this.cats = new Cats[catNumber];
+        this.cats = new LinkedList<Cats>();
         this.felavio = felavio;
         detector = new CollisionDetector(felavio, cats);
     }
@@ -42,7 +46,14 @@ public class Game {
 
         new KeyboardListener(felavio);
 
-        for (int i = 0; i < cats.length; i++) {
+        cats.add(CatFactory.spawnCats(1, WALL_RIGHT));
+        cats.add(CatFactory.spawnCats(1, WALL_LEFT));
+
+        for(Cats cat : cats) {
+            cat.show();
+        }
+
+        /*for (int i = 0; i < cats.size(); i++) {
 
             int random = (int) (Math.random() * 101);
 
@@ -55,10 +66,10 @@ public class Game {
             cats[i] = new Cats(1, catStartPoint);
             cats[i].show();
 
-            /*int random = (int) (Math.random() * (background.getWidth() - PLAYER_SPAWNZONE) + PLAYER_SPAWNZONE);
+            int random = (int) (Math.random() * (background.getWidth() - PLAYER_SPAWNZONE) + PLAYER_SPAWNZONE);
             cats[i].spawn(random, ground.getY() -  groundHeight);
-            cats[i].show();*/
-        }
+            cats[i].show();
+        } */
         run();
     }
 
@@ -68,19 +79,21 @@ public class Game {
 
                 felavio.moveX();
                 felavio.moveY();
-                Thread.sleep(50);
+                Thread.sleep(20);
             } catch (Exception e) {
                 System.out.println("sleep failed");
             }
 
 
-            for (int i = 0; i < cats.length; i++) {
-                if(!cats[i].isDead()){
-                cats[i].moveX();
+            for (Cats kitty : cats) {
+                if(!kitty.isDead()){
+                kitty.moveX();
                 }
-
             }
             detector.collisionDetect();
         }
     }
+
+
+
 }

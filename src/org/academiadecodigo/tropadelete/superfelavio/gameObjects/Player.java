@@ -32,7 +32,7 @@ public class Player extends GameObject {
         }
         super.moveY();
 
-        if (super.getHeight() >= Game.GROUND_Y && jump){
+        if (super.getHeight() > Game.GROUND_Y && jump){
             jump = false;
         }
     }
