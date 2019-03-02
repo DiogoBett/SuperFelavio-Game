@@ -11,7 +11,7 @@ public class Player extends GameObject {
     private static final int SPEED = 10;
 
 
-    private static final int HEALTH = 100;
+    private static final int HEALTH = 20;
 
     private boolean jump;
 

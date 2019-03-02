@@ -23,8 +23,8 @@ public class Game {
     private Player felavio;
     private LinkedList<Cats> cats;
     private long nextSpawnTime;
-    private long immuneTimer;
     private Picture background;
+    private Picture deathScreen;
     private CollisionDetector detector;
     private Text currentScore;
     private Text currentHealth;
@@ -34,14 +34,14 @@ public class Game {
 
     public Game() {
         this.cats = new LinkedList<Cats>();
-        this.felavio = felavio;
-        score = 0;
+        this.background = new Picture(PADDING, PADDING, "resources/ground.jpg");
+        this.catDeath = new Sound("/resources/catDeath.wav");
+        this.gameSound = new Sound ("/resources/SuperFelavioMusic.wav");
+        this.deathScreen = new Picture(PADDING,PADDING,"resources/deathScreen.jpg");
     }
 
     public void start() {
 
-        this.background = new Picture(PADDING, PADDING, "resources/ground.jpg");
-        background.draw();
         Line ground = new Line(PADDING, background.getHeight() - groundHeight, background.getWidth(), background.getHeight() - groundHeight);
         GROUND_Y = ground.getY() - groundHeight;
         WALL_LEFT = background.getX();
@@ -49,13 +49,16 @@ public class Game {
         this.felavio = new Player();
         currentScore = new Text(10,10, "Score: " + score);
         currentHealth = new Text(10, 30, "Health: " + felavio.getHealth());
+
         detector = new CollisionDetector(felavio, cats);
+
+        background.draw();
         felavio.show();
         currentScore.draw();
         currentHealth.draw();
-        catDeath = new Sound("/resources/catDeath.wav");
-        gameSound = new Sound ("/resources/SuperFelavioMusic.wav");
+
         gameSound.setLoop(100);
+
         new KeyboardListener(felavio);
 
         run();
@@ -63,7 +66,7 @@ public class Game {
 
     private void run() {
         nextSpawnTime = System.currentTimeMillis();
-        while (true) {//!felavio.isDead()
+        while (!felavio.isDead()) {
             spawner();
             try {
                 updateHealth();
@@ -90,6 +93,11 @@ public class Game {
             }
             detector.collisionDetect();
         }
+
+        deathScreen.draw();
+        showScore();
+
+
     }
 
     private void spawner () {
@@ -115,6 +123,23 @@ public class Game {
         currentHealth.delete();
         currentHealth = new Text(10,30, "Health: " + felavio.getHealth());
         currentHealth.draw();
+    }
+
+    public void showScore() {
+
+        if (score == 0) {
+            Text endScore = new Text(deathScreen.getWidth()/2 + 100,deathScreen.getHeight()/2, "YOU CAN'T EVEN KILL ONE CAT!?");
+            endScore.grow(150,20);
+            endScore.draw();
+            gameSound.stop();
+        }
+
+        if(score > 0) {
+            Text endScore = new Text(deathScreen.getWidth()/2 + 100, deathScreen.getHeight()/2, "YOU ONLY KILLED " + score / 10 + " CATS!?");
+            endScore.grow(150, 20);
+            endScore.draw();
+            gameSound.stop();
+        }
     }
 
 }

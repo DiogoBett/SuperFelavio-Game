@@ -62,6 +62,10 @@ public abstract class GameObject {
     }
 
     public void takeDamage() {
+        if(health > 0) {
+            health = 0;
+        }
+
         health--;
     }
 
