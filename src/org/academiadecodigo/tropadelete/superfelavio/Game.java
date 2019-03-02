@@ -1,12 +1,12 @@
 package org.academiadecodigo.tropadelete.superfelavio;
 
 import org.academiadecodigo.simplegraphics.graphics.Line;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.tropadelete.superfelavio.gameObjects.Cats.CatFactory;
 import org.academiadecodigo.tropadelete.superfelavio.gameObjects.Cats.Cats;
 import org.academiadecodigo.tropadelete.superfelavio.gameObjects.Player;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class Game {
@@ -21,7 +21,7 @@ public class Game {
 
     private Player felavio;
     private LinkedList<Cats> cats;
-
+    private long nextSpawnTime;
     private Picture background;
     private CollisionDetector detector;
 
@@ -46,8 +46,7 @@ public class Game {
 
         new KeyboardListener(felavio);
 
-        cats.add(CatFactory.spawnCats(1, WALL_RIGHT));
-        cats.add(CatFactory.spawnCats(1, WALL_LEFT));
+
 
         for(Cats cat : cats) {
             cat.show();
@@ -74,7 +73,9 @@ public class Game {
     }
 
     private void run() {
-        while (true) {//felavio.isDead()
+        nextSpawnTime = System.currentTimeMillis();
+        while (true) {//!felavio.isDead()
+            spawner();
             try {
 
                 felavio.moveX();
@@ -84,14 +85,32 @@ public class Game {
                 System.out.println("sleep failed");
             }
 
-
-            for (Cats kitty : cats) {
-                if(!kitty.isDead()){
-                kitty.moveX();
+            
+            Iterator<Cats> it = cats.iterator();
+            while (it.hasNext()){
+                Cats kitty = it.next();
+                if(kitty.isDead()){
+                    kitty.hide();
+                    it.remove();
+                    continue;
                 }
+                kitty.moveX();
             }
             detector.collisionDetect();
         }
+    }
+
+    private void spawner () {
+        if(nextSpawnTime <= System.currentTimeMillis()){
+            Cats cat1 =CatFactory.spawnCats(1, WALL_RIGHT);
+            Cats cat2 =CatFactory.spawnCats(1, WALL_LEFT);
+            cats.add(cat1);
+            cats.add(cat2);
+            cat1.show();
+            cat2.show();
+            nextSpawnTime = System.currentTimeMillis()+5000;
+        }
+
     }
 
 
