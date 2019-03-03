@@ -13,6 +13,7 @@ public class Cats extends GameObject {
     private static final int SPEED = 5;
 
     private Sound catDeath;
+    private Sound catSpawn;
 
     public Cats(int health, int startPoint) {
         super(health,
@@ -22,6 +23,9 @@ public class Cats extends GameObject {
                 new Picture(startPoint, Game.GROUND_Y - 40, "resources/catLeft.png"));
 
         this.catDeath = new Sound("/resources/catDeath.wav");
+        this.catSpawn = new Sound("/resources/catSpawn.wav");
+        catSpawn.play(true);
+
         setCurrentX(Direction.LEFT);
     }
 
