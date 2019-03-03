@@ -12,7 +12,6 @@ public abstract class GameObject {
     protected Rectangle hitbox;
     private Picture rightPic;
     private Picture leftPic;
-    private Picture currentPic;
     private int speed;
     protected int jumpHeight;
 
@@ -56,16 +55,15 @@ public abstract class GameObject {
         if (getHeight() <= Game.GROUND_Y) {
             hitbox.translate(0, speed);
             rightPic.translate(0, speed);
-            leftPic.translate(0,speed);
+            leftPic.translate(0, speed);
         }
 
     }
 
     public void takeDamage() {
-        if(health > 0) {
+        if (health <= 0) {
             health = 0;
         }
-
         health--;
     }
 
@@ -88,8 +86,19 @@ public abstract class GameObject {
     }
 
     public void show() {
-        rightPic.draw();
-
+        if (currentX==null){
+            return;
+        }
+        switch (currentX) {
+            case RIGHT:
+                rightPic.draw();
+                leftPic.delete();
+                break;
+            case LEFT:
+                leftPic.draw();
+                rightPic.delete();
+                break;
+        }
     }
 
     public void hide() {

@@ -13,9 +13,7 @@ import java.util.LinkedList;
 public class Game {
 
     public final int PADDING = 10;
-
     public final int groundHeight = 45;
-
     public static int GROUND_Y;
     public static int WALL_RIGHT;
     public static int WALL_LEFT;
@@ -29,15 +27,16 @@ public class Game {
     private Text currentScore;
     private Text currentHealth;
     private int score;
-    private Sound catDeath;
+    private int spawnDelay;
+
     private Sound gameSound;
 
     public Game() {
         this.cats = new LinkedList<Cats>();
         this.background = new Picture(PADDING, PADDING, "resources/ground.jpg");
-        this.catDeath = new Sound("/resources/catDeath.wav");
         this.gameSound = new Sound ("/resources/SuperFelavioMusic.wav");
         this.deathScreen = new Picture(PADDING,PADDING,"resources/deathScreen.jpg");
+        this.spawnDelay = 5000;
     }
 
     public void start() {
@@ -70,6 +69,7 @@ public class Game {
             spawner();
             try {
                 updateHealth();
+                felavio.show();
                 felavio.moveX();
                 felavio.moveY();
                 Thread.sleep(20);
@@ -86,7 +86,6 @@ public class Game {
                     it.remove();
                     score = score + 10;
                     updateScore();
-                    catDeath.play(true);
                     continue;
                 }
                 kitty.moveX();
@@ -108,7 +107,11 @@ public class Game {
             cats.add(cat2);
             cat1.show();
             cat2.show();
-            nextSpawnTime = System.currentTimeMillis()+5000;
+            nextSpawnTime = System.currentTimeMillis() + spawnDelay;
+            if(spawnDelay >= 2000 ){
+                spawnDelay -= 100;
+            }
+
         }
 
     }

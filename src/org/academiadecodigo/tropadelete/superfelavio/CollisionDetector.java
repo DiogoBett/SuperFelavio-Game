@@ -29,13 +29,13 @@ public class CollisionDetector {
 
                 felavio.takeDamage();
 
-                try {
+                /*try {
                     felavio.hide();
                     Thread.sleep(50);
                     felavio.show();
                 }catch (InterruptedException e){
                     System.out.println("invincibility frames");
-                }
+                }*/
 
             }
         }
