@@ -62,11 +62,14 @@ public class Game {
 
         new KeyboardListener(felavio);
 
+        pickStartScreen();
+
         startScreen.draw();
 
         while(felavio.getCurrentX() == null && felavio.getCurrentY() == null) {
 
         }
+
             startScreen.delete();
             run();
 
@@ -152,6 +155,23 @@ public class Game {
             endScore.draw();
             gameSound.stop();
         }
+    }
+
+    public void pickStartScreen() {
+        int randomStartScreen = (int) (Math.random() * 3);
+
+        if(randomStartScreen == 0) {
+            this.startScreen = new Picture(PADDING,PADDING, "resources/startScreen.jpg");
+        }
+
+        if(randomStartScreen == 1) {
+            this.startScreen = new Picture(PADDING,PADDING, "resources/startScreenHat.jpg");
+        }
+
+        if(randomStartScreen == 2) {
+            this.startScreen = new Picture(PADDING,PADDING,"resources/startScreenThug.jpg");
+        }
+
     }
 
 }
