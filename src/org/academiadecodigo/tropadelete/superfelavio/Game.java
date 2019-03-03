@@ -70,6 +70,9 @@ public class Game {
 
         }
 
+            felavio.setCurrentX(Direction.RIGHT);
+            felavio.show();
+            felavio.setCurrentX(null);
             startScreen.delete();
             run();
 
