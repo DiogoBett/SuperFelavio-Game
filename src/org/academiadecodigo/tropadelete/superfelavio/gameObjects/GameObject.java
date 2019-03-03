@@ -51,7 +51,7 @@ public abstract class GameObject {
             leftPic.translate(0, -speed);
             return;
         }
-
+        currentY = null;
         if (getHeight() <= Game.GROUND_Y) {
             hitbox.translate(0, speed);
             rightPic.translate(0, speed);

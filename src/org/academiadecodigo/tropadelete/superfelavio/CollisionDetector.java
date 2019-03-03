@@ -20,10 +20,11 @@ public class CollisionDetector {
     }
 
     public void collisionDetect() {
-        for (Cats cat : cats){
-            if(felavio.checkX(cat) && felavio.checkY(cat)){
-                if (felavio.isJump()){
+        for (Cats cat : cats) {
+            if (felavio.checkX(cat) && felavio.checkY(cat)) {
+                if (felavio.isJump()) {
                     cat.takeDamage();
+                    felavio.setCurrentY(Direction.UP);
                     continue;
                 }
 
