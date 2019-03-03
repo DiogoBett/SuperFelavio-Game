@@ -114,10 +114,6 @@ public abstract class GameObject {
         return health;
     }
 
-    public Rectangle getHitbox() {
-        return hitbox;
-    }
-
     public int getX() {
         return hitbox.getX();
     }
