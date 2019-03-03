@@ -23,6 +23,7 @@ public class Game {
     private long nextSpawnTime;
     private Picture background;
     private Picture deathScreen;
+    private Picture startScreen;
     private CollisionDetector detector;
     private Text currentScore;
     private Text currentHealth;
@@ -36,6 +37,7 @@ public class Game {
         this.background = new Picture(PADDING, PADDING, "resources/ground.jpg");
         this.gameSound = new Sound ("/resources/SuperFelavioMusic.wav");
         this.deathScreen = new Picture(PADDING,PADDING,"resources/deathScreen.jpg");
+        this.startScreen = new Picture(PADDING,PADDING, "resources/startScreen.jpg");
         this.spawnDelay = 5000;
     }
 
@@ -60,7 +62,14 @@ public class Game {
 
         new KeyboardListener(felavio);
 
-        run();
+        startScreen.draw();
+
+        while(felavio.getCurrentX() == null){
+
+        }
+            startScreen.delete();
+            run();
+
     }
 
     private void run() {
