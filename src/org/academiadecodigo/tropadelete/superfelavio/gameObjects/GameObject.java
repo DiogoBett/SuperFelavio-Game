@@ -51,7 +51,7 @@ public abstract class GameObject {
             leftPic.translate(0, -speed);
             return;
         }
-
+        currentY = null;
         if (getHeight() <= Game.GROUND_Y) {
             hitbox.translate(0, speed);
             rightPic.translate(0, speed);
@@ -136,6 +136,10 @@ public abstract class GameObject {
 
     public Direction getCurrentX() {
         return currentX;
+    }
+
+    public Direction getCurrentY() {
+        return currentY;
     }
 
     public void setCurrentX(Direction currentX) {

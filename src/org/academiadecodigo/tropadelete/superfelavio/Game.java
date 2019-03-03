@@ -64,7 +64,7 @@ public class Game {
 
         startScreen.draw();
 
-        while(felavio.getCurrentX() == null){
+        while(felavio.getCurrentX() == null && felavio.getCurrentY() == null) {
 
         }
             startScreen.delete();
