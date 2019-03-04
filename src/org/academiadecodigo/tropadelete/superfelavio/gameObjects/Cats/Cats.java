@@ -15,12 +15,12 @@ public class Cats extends GameObject {
     private Sound catSpawn;
     private int scoreGain;
 
-    public Cats(int health, int startPoint,int speed, String rightPic, String leftpic, int scoreGain) {
+    public Cats(int health, int startPoint,int speed, String rightPic, String leftpic, int scoreGain, int Width, int Height) {
         super(health,
                 speed,
-                new Rectangle(startPoint, Game.GROUND_Y, WIDTH, HEIGHT),
-                new Picture(startPoint, Game.GROUND_Y - 40, rightPic),
-                new Picture(startPoint, Game.GROUND_Y - 40, leftpic));
+                new Rectangle(startPoint, Game.GROUND_Y, Width, Height),
+                new Picture(startPoint , Game.GROUND_Y - 40, rightPic),
+                new Picture(startPoint , Game.GROUND_Y - 40, leftpic));
 
         this.catDeath = new Sound("/resources/sound/catDeath.wav");
         this.catSpawn = new Sound("/resources/sound/catSpawn.wav");

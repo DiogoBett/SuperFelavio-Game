@@ -132,7 +132,7 @@ public class Game {
         if (nextSpawnTime >= System.currentTimeMillis()) {
             return;
         }
-        Cats cat1 = CatFactory.spawnCats(WALL_RIGHT - 50);
+        Cats cat1 = CatFactory.spawnCats(WALL_RIGHT - 100);
         Cats cat2 = CatFactory.spawnCats(WALL_LEFT);
         cats.add(cat1);
         cats.add(cat2);
