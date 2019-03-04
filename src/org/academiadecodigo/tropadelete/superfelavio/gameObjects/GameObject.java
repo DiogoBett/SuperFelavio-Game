@@ -6,11 +6,11 @@ import org.academiadecodigo.tropadelete.superfelavio.Direction;
 import org.academiadecodigo.tropadelete.superfelavio.Game;
 
 public abstract class GameObject {
-    private int health;
+    protected int health;
     private Direction currentX;
     protected Direction currentY;
     protected Rectangle hitbox;
-    private Picture rightPic;
+    protected Picture rightPic;
     private Picture leftPic;
     private int speed;
     protected int jumpHeight;
@@ -89,6 +89,7 @@ public abstract class GameObject {
         if (currentX==null){
             return;
         }
+
         switch (currentX) {
             case RIGHT:
                 rightPic.draw();
@@ -99,6 +100,7 @@ public abstract class GameObject {
                 rightPic.delete();
                 break;
         }
+
     }
 
     public void hide() {

@@ -6,21 +6,27 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.tropadelete.superfelavio.gameObjects.Cats.CatFactory;
 import org.academiadecodigo.tropadelete.superfelavio.gameObjects.Cats.Cats;
 import org.academiadecodigo.tropadelete.superfelavio.gameObjects.Player;
+import org.academiadecodigo.tropadelete.superfelavio.gameObjects.PowerUp.PowerUp;
+import org.academiadecodigo.tropadelete.superfelavio.gameObjects.PowerUp.PowerUpFactory;
 
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import static org.academiadecodigo.tropadelete.superfelavio.gameObjects.PowerUp.PowerUpFactory.spawnPowerUp;
+
 public class Game {
 
-    public final int PADDING = 10;
-    public final int groundHeight = 45;
+    private final int PADDING = 10;
+    private final int groundHeight = 45;
+    private static int SCORE;
     public static int GROUND_Y;
     public static int WALL_RIGHT;
     public static int WALL_LEFT;
-    private static int SCORE;
+
 
     private Player felavio;
     private LinkedList<Cats> cats;
+    private LinkedList<PowerUp> powerUps;
     private long nextSpawnTime;
     private Picture background;
     private Picture deathScreen;
@@ -35,6 +41,7 @@ public class Game {
 
     public Game() {
         this.cats = new LinkedList<Cats>();
+        this.powerUps = new LinkedList<>();
         this.background = new Picture(PADDING, PADDING, "resources/images/ground.jpg");
         this.gameSound = new Sound("/resources/sound/SuperFelavioMusic.wav");
         this.deathScreen = new Picture(PADDING, PADDING, "resources/images/deathScreen.jpg");
@@ -52,7 +59,7 @@ public class Game {
         currentScore = new Text(10, 10, "Score: " + SCORE);
         currentHealth = new Text(10, 30, "Health: " + felavio.getHealth());
 
-        detector = new CollisionDetector(felavio, cats);
+        detector = new CollisionDetector(felavio, cats, powerUps);
 
         background.draw();
         felavio.show();
@@ -98,6 +105,7 @@ public class Game {
             while (it.hasNext()) {
                 Cats kitty = it.next();
                 if (kitty.isDead()) {
+                    spawnPowerUp(kitty.getX());
                     kitty.hide();
                     it.remove();
                     catCounter++;
@@ -106,7 +114,7 @@ public class Game {
                 }
                 kitty.moveX();
             }
-            detector.collisionDetect();
+            detector.checkCollisions();
         }
 
         deathScreen.draw();
@@ -115,7 +123,7 @@ public class Game {
     }
 
     private void spawner() {
-        if(cats.size() >= 15){
+        if (cats.size() >= 15) {
             return;
         }
         if (nextSpawnTime >= System.currentTimeMillis()) {
@@ -135,6 +143,21 @@ public class Game {
 
     }
 
+    private void spawnPowerUp(int position) {
+        if (powerUps.size() >= 2) {
+            return;
+        }
+
+        int spawnChance = (int) (Math.random() * 100);
+
+        if (spawnChance < 25) {
+
+            PowerUp powerUp = PowerUpFactory.spawnPowerUp(position);
+            powerUps.add(powerUp);
+            powerUp.show();
+        }
+    }
+
     public void updateScore() {
         currentScore.delete();
         currentScore = new Text(10, 10, "Score: " + SCORE);
@@ -152,7 +175,7 @@ public class Game {
         if (SCORE == 0) {
             Text gameScore = new Text(deathScreen.getWidth() / 2 + 200, deathScreen.getHeight() / 2, "SCORE: N00B");
             Text catCounterText = new Text(deathScreen.getWidth() / 2 + 200, deathScreen.getHeight() / 2 + 50, "YOU CAN'T EVEN KILL ONE CAT!?");
-            gameScore.grow(150,20);
+            gameScore.grow(150, 20);
             catCounterText.grow(150, 20);
             gameScore.draw();
             catCounterText.draw();
@@ -162,7 +185,7 @@ public class Game {
         if (SCORE > 0) {
             Text gameScore = new Text(deathScreen.getWidth() / 2 + 200, deathScreen.getHeight() / 2, "FINAL SCORE: " + SCORE);
             Text catCounterText = new Text(deathScreen.getWidth() / 2 + 200, deathScreen.getHeight() / 2 + 50, "YOU ONLY KILLED " + catCounter + " CATS!?");
-            gameScore.grow(150,20);
+            gameScore.grow(150, 20);
             catCounterText.grow(150, 20);
             gameScore.draw();
             catCounterText.draw();
