@@ -100,7 +100,6 @@ public abstract class GameObject {
                 rightPic.delete();
                 break;
         }
-
     }
 
     public void hide() {

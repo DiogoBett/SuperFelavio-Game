@@ -8,7 +8,7 @@ import org.academiadecodigo.tropadelete.superfelavio.Sound;
 import org.academiadecodigo.tropadelete.superfelavio.gameObjects.GameObject;
 
 public class Cats extends GameObject {
-    private static final int WIDTH = 25;
+    private static final int WIDTH = 30;
     private static final int HEIGHT = 30;
 
     private Sound catDeath;
