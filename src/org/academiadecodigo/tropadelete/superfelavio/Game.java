@@ -35,7 +35,7 @@ public class Game {
     public Game() {
         this.cats = new LinkedList<Cats>();
         this.background = new Picture(PADDING, PADDING, "resources/images/ground.jpg");
-        this.gameSound = new Sound("/resources/sound/Jumpshot.wav");
+        this.gameSound = new Sound("/resources/sound/SuperFelavioMusic.wav");
         this.deathScreen = new Picture(PADDING, PADDING, "resources/images/deathScreen.jpg");
         this.startScreen = new Picture(PADDING, PADDING, "resources/images/startScreen.jpg");
         this.spawnDelay = 5000;
@@ -111,7 +111,6 @@ public class Game {
         deathScreen.draw();
         showScore();
 
-
     }
 
     private void spawner() {
@@ -121,8 +120,8 @@ public class Game {
         if (nextSpawnTime >= System.currentTimeMillis()) {
             return;
         }
-        Cats cat1 = CatFactory.spawnCats(1, WALL_RIGHT - 50);
-        Cats cat2 = CatFactory.spawnCats(1, WALL_LEFT);
+        Cats cat1 = CatFactory.spawnCats(WALL_RIGHT - 50);
+        Cats cat2 = CatFactory.spawnCats(WALL_LEFT);
         cats.add(cat1);
         cats.add(cat2);
         cat1.show();
