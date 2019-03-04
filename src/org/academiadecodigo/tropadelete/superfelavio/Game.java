@@ -38,12 +38,14 @@ public class Game {
     private int spawnDelay;
 
     private Sound gameSound;
+    private Sound endGameSound;
 
     public Game() {
         this.cats = new LinkedList<Cats>();
         this.powerUps = new LinkedList<>();
         this.background = new Picture(PADDING, PADDING, "resources/images/ground.jpg");
         this.gameSound = new Sound("/resources/sound/SuperFelavioMusic.wav");
+        this.endGameSound = new Sound("/resources/sound/endGame.wav");
         this.deathScreen = new Picture(PADDING, PADDING, "resources/images/deathScreen.jpg");
         this.startScreen = new Picture(PADDING, PADDING, "resources/images/startScreen.jpg");
         this.spawnDelay = 5000;
@@ -119,6 +121,7 @@ public class Game {
 
         deathScreen.draw();
         showScore();
+        endGameSound.play(true);
 
     }
 
