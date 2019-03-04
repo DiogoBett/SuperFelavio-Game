@@ -20,8 +20,8 @@ public class Player extends GameObject {
         super(HEALTH,
                 SPEED,
                 new Rectangle(Game.WALL_RIGHT/2, Game.GROUND_Y-100, WIDTH, HEIGHT),
-                new Picture((Game.WALL_RIGHT/2) -15 , Game.GROUND_Y - 130, "resources/flavio.png"),
-                new Picture (Game.WALL_RIGHT/2 - 15, Game.GROUND_Y - 130, "resources/flavioLeft.png"));
+                new Picture((Game.WALL_RIGHT/2) -15 , Game.GROUND_Y - 130, "resources/images/flavio.png"),
+                new Picture (Game.WALL_RIGHT/2 - 15, Game.GROUND_Y - 130, "resources/images/flavioLeft.png"));
 
         this.jump = false;
     }

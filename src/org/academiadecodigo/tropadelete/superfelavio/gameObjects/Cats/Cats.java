@@ -19,11 +19,11 @@ public class Cats extends GameObject {
         super(health,
                 SPEED,
                 new Rectangle(startPoint, Game.GROUND_Y, WIDTH, HEIGHT),
-                new Picture(startPoint, Game.GROUND_Y - 40, "resources/cat.png"),
-                new Picture(startPoint, Game.GROUND_Y - 40, "resources/catLeft.png"));
+                new Picture(startPoint, Game.GROUND_Y - 40, "resources/images/black-cat.png"),
+                new Picture(startPoint, Game.GROUND_Y - 40, "resources/images/black-cat-Left.png"));
 
-        this.catDeath = new Sound("/resources/catDeath.wav");
-        this.catSpawn = new Sound("/resources/catSpawn.wav");
+        this.catDeath = new Sound("/resources/sound/catDeath.wav");
+        this.catSpawn = new Sound("/resources/sound/catSpawn.wav");
         catSpawn.play(true);
 
         setCurrentX(Direction.LEFT);

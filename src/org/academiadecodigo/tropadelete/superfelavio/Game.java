@@ -34,10 +34,10 @@ public class Game {
 
     public Game() {
         this.cats = new LinkedList<Cats>();
-        this.background = new Picture(PADDING, PADDING, "resources/ground.jpg");
-        this.gameSound = new Sound ("/resources/SuperFelavioMusic.wav");
-        this.deathScreen = new Picture(PADDING,PADDING,"resources/deathScreen.jpg");
-        this.startScreen = new Picture(PADDING,PADDING, "resources/startScreen.jpg");
+        this.background = new Picture(PADDING, PADDING, "resources/images/ground.jpg");
+        this.gameSound = new Sound("/resources/sound/Jumpshot.wav");
+        this.deathScreen = new Picture(PADDING, PADDING, "resources/images/deathScreen.jpg");
+        this.startScreen = new Picture(PADDING, PADDING, "resources/images/startScreen.jpg");
         this.spawnDelay = 5000;
     }
 
@@ -48,7 +48,7 @@ public class Game {
         WALL_LEFT = background.getX();
         WALL_RIGHT = background.getWidth();
         this.felavio = new Player();
-        currentScore = new Text(10,10, "Score: " + score);
+        currentScore = new Text(10, 10, "Score: " + score);
         currentHealth = new Text(10, 30, "Health: " + felavio.getHealth());
 
         detector = new CollisionDetector(felavio, cats);
@@ -66,15 +66,15 @@ public class Game {
 
         startScreen.draw();
 
-        while(felavio.getCurrentX() == null && felavio.getCurrentY() == null) {
+        while (felavio.getCurrentX() == null && felavio.getCurrentY() == null) {
 
         }
 
-            felavio.setCurrentX(Direction.RIGHT);
-            felavio.show();
-            felavio.setCurrentX(null);
-            startScreen.delete();
-            run();
+        felavio.setCurrentX(Direction.RIGHT);
+        felavio.show();
+        felavio.setCurrentX(null);
+        startScreen.delete();
+        run();
 
     }
 
@@ -92,11 +92,11 @@ public class Game {
                 System.out.println("sleep failed");
             }
 
-            
+
             Iterator<Cats> it = cats.iterator();
-            while (it.hasNext()){
+            while (it.hasNext()) {
                 Cats kitty = it.next();
-                if(kitty.isDead()){
+                if (kitty.isDead()) {
                     kitty.hide();
                     it.remove();
                     score = score + 10;
@@ -114,46 +114,50 @@ public class Game {
 
     }
 
-    private void spawner () {
-        if(nextSpawnTime <= System.currentTimeMillis()){
-            Cats cat1 =CatFactory.spawnCats(1, WALL_RIGHT - 50);
-            Cats cat2 =CatFactory.spawnCats(1, WALL_LEFT);
-            cats.add(cat1);
-            cats.add(cat2);
-            cat1.show();
-            cat2.show();
-            nextSpawnTime = System.currentTimeMillis() + spawnDelay;
-            if(spawnDelay >= 2000 ){
-                spawnDelay -= 100;
-            }
-
+    private void spawner() {
+        if(cats.size() >= 15){
+            return;
         }
+        if (nextSpawnTime >= System.currentTimeMillis()) {
+            return;
+        }
+        Cats cat1 = CatFactory.spawnCats(1, WALL_RIGHT - 50);
+        Cats cat2 = CatFactory.spawnCats(1, WALL_LEFT);
+        cats.add(cat1);
+        cats.add(cat2);
+        cat1.show();
+        cat2.show();
+        nextSpawnTime = System.currentTimeMillis() + spawnDelay;
+        if (spawnDelay >= 2000) {
+            spawnDelay -= 100;
+        }
+
 
     }
 
     public void updateScore() {
         currentScore.delete();
-        currentScore = new Text(10,10, "Score: " + score);
+        currentScore = new Text(10, 10, "Score: " + score);
         currentScore.draw();
     }
 
     public void updateHealth() {
         currentHealth.delete();
-        currentHealth = new Text(10,30, "Health: " + felavio.getHealth());
+        currentHealth = new Text(10, 30, "Health: " + felavio.getHealth());
         currentHealth.draw();
     }
 
     public void showScore() {
 
         if (score == 0) {
-            Text endScore = new Text(deathScreen.getWidth()/2 + 100,deathScreen.getHeight()/2, "YOU CAN'T EVEN KILL ONE CAT!?");
-            endScore.grow(150,20);
+            Text endScore = new Text(deathScreen.getWidth() / 2 + 100, deathScreen.getHeight() / 2, "YOU CAN'T EVEN KILL ONE CAT!?");
+            endScore.grow(150, 20);
             endScore.draw();
             gameSound.stop();
         }
 
-        if(score > 0) {
-            Text endScore = new Text(deathScreen.getWidth()/2 + 100, deathScreen.getHeight()/2, "YOU ONLY KILLED " + score / 10 + " CATS!?");
+        if (score > 0) {
+            Text endScore = new Text(deathScreen.getWidth() / 2 + 100, deathScreen.getHeight() / 2, "YOU ONLY KILLED " + score / 10 + " CATS!?");
             endScore.grow(150, 20);
             endScore.draw();
             gameSound.stop();
@@ -163,16 +167,16 @@ public class Game {
     public void pickStartScreen() {
         int randomStartScreen = (int) (Math.random() * 3);
 
-        if(randomStartScreen == 0) {
-            this.startScreen = new Picture(PADDING,PADDING, "resources/startScreen.jpg");
+        if (randomStartScreen == 0) {
+            this.startScreen = new Picture(PADDING, PADDING, "resources/images/startScreen.jpg");
         }
 
-        if(randomStartScreen == 1) {
-            this.startScreen = new Picture(PADDING,PADDING, "resources/startScreenHat.jpg");
+        if (randomStartScreen == 1) {
+            this.startScreen = new Picture(PADDING, PADDING, "resources/images/startScreenHat.jpg");
         }
 
-        if(randomStartScreen == 2) {
-            this.startScreen = new Picture(PADDING,PADDING,"resources/startScreenThug.jpg");
+        if (randomStartScreen == 2) {
+            this.startScreen = new Picture(PADDING, PADDING, "resources/images/startScreenThug.jpg");
         }
 
     }
