@@ -17,6 +17,7 @@ public class Game {
     public static int GROUND_Y;
     public static int WALL_RIGHT;
     public static int WALL_LEFT;
+    private static int SCORE;
 
     private Player felavio;
     private LinkedList<Cats> cats;
@@ -27,7 +28,7 @@ public class Game {
     private CollisionDetector detector;
     private Text currentScore;
     private Text currentHealth;
-    private int score;
+    private int catCounter;
     private int spawnDelay;
 
     private Sound gameSound;
@@ -48,7 +49,7 @@ public class Game {
         WALL_LEFT = background.getX();
         WALL_RIGHT = background.getWidth();
         this.felavio = new Player();
-        currentScore = new Text(10, 10, "Score: " + score);
+        currentScore = new Text(10, 10, "Score: " + SCORE);
         currentHealth = new Text(10, 30, "Health: " + felavio.getHealth());
 
         detector = new CollisionDetector(felavio, cats);
@@ -99,7 +100,7 @@ public class Game {
                 if (kitty.isDead()) {
                     kitty.hide();
                     it.remove();
-                    score = score + 10;
+                    catCounter++;
                     updateScore();
                     continue;
                 }
@@ -136,7 +137,7 @@ public class Game {
 
     public void updateScore() {
         currentScore.delete();
-        currentScore = new Text(10, 10, "Score: " + score);
+        currentScore = new Text(10, 10, "Score: " + SCORE);
         currentScore.draw();
     }
 
@@ -148,17 +149,23 @@ public class Game {
 
     public void showScore() {
 
-        if (score == 0) {
-            Text endScore = new Text(deathScreen.getWidth() / 2 + 100, deathScreen.getHeight() / 2, "YOU CAN'T EVEN KILL ONE CAT!?");
-            endScore.grow(150, 20);
-            endScore.draw();
+        if (SCORE == 0) {
+            Text gameScore = new Text(deathScreen.getWidth() / 2 + 200, deathScreen.getHeight() / 2, "SCORE: N00B");
+            Text catCounterText = new Text(deathScreen.getWidth() / 2 + 200, deathScreen.getHeight() / 2 + 50, "YOU CAN'T EVEN KILL ONE CAT!?");
+            gameScore.grow(150,20);
+            catCounterText.grow(150, 20);
+            gameScore.draw();
+            catCounterText.draw();
             gameSound.stop();
         }
 
-        if (score > 0) {
-            Text endScore = new Text(deathScreen.getWidth() / 2 + 100, deathScreen.getHeight() / 2, "YOU ONLY KILLED " + score / 10 + " CATS!?");
-            endScore.grow(150, 20);
-            endScore.draw();
+        if (SCORE > 0) {
+            Text gameScore = new Text(deathScreen.getWidth() / 2 + 200, deathScreen.getHeight() / 2, "FINAL SCORE: " + SCORE);
+            Text catCounterText = new Text(deathScreen.getWidth() / 2 + 200, deathScreen.getHeight() / 2 + 50, "YOU ONLY KILLED " + catCounter + " CATS!?");
+            gameScore.grow(150,20);
+            catCounterText.grow(150, 20);
+            gameScore.draw();
+            catCounterText.draw();
             gameSound.stop();
         }
     }
@@ -178,6 +185,10 @@ public class Game {
             this.startScreen = new Picture(PADDING, PADDING, "resources/images/startScreenThug.jpg");
         }
 
+    }
+
+    public static void increaseScore(int increase) {
+        SCORE = SCORE + increase;
     }
 
 }

@@ -13,8 +13,9 @@ public class Cats extends GameObject {
 
     private Sound catDeath;
     private Sound catSpawn;
+    private int scoreGain;
 
-    public Cats(int health, int startPoint,int speed, String rightPic, String leftpic) {
+    public Cats(int health, int startPoint,int speed, String rightPic, String leftpic, int scoreGain) {
         super(health,
                 speed,
                 new Rectangle(startPoint, Game.GROUND_Y, WIDTH, HEIGHT),
@@ -23,6 +24,7 @@ public class Cats extends GameObject {
 
         this.catDeath = new Sound("/resources/sound/catDeath.wav");
         this.catSpawn = new Sound("/resources/sound/catSpawn.wav");
+        this.scoreGain = scoreGain;
         catSpawn.play(true);
 
         setCurrentX(Direction.LEFT);
@@ -44,6 +46,7 @@ public class Cats extends GameObject {
         boolean isDead = super.isDead();
         if (isDead) {
             catDeath.play(true);
+            Game.increaseScore(scoreGain);
         }
         return isDead;
     }

@@ -12,7 +12,8 @@ public class CatFactory {
                     catStartPosition,
                     felineType.getSpeed(),
                     felineType.getRightpic(),
-                    felineType.getLeftpic());
+                    felineType.getLeftpic(),
+                    felineType.getScoreGain());
     }
 
 }
