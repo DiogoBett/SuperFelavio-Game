@@ -2,9 +2,9 @@ package org.academiadecodigo.tropadelete.superfelavio.gameObjects.Cats;
 
 public enum FelineType {
     NORMAL(1,7,"resources/images/cat.png", "resources/images/catLeft.png", 10, 25,30),
-    BLACKCAT(2, 5, "resources/images/black-cat.png", "resources/images/black-cat-left.png", 20, 25,30),
+    BLACKCAT(2, 5, "resources/images/black-cat.png", "resources/images/black-cat-left.png", 20, 25,30); /*,
     LION(5,3,"resources/images/rightLion.png", "resources/images/lion.png", 50, 30,30),
-    SEALION(9,1,"resources/images/sealionRight.png", "resources/images/sealion.png", 100,65,30);
+    SEALION(9,1,"resources/images/sealionRight.png", "resources/images/sealion.png", 100,65,30); */
 
     private int health;
     private int speed;
